@@ -1,0 +1,430 @@
+QUESTION ONE – Java OOP-Based Transport Management System (15 Marks)
+
+
+
+Objective:
+
+
+
+Design and implement a Java prototype for a University Transport Management System (UTMS) showcasing OOP principles.
+
+
+
+a)	Implementation Guidelines by OOP Principle:
+
+
+
+(i)	Abstraction – Abstract Classes/Interfaces
+
+
+
+Use abstract classes or interfaces to define templates:
+
+
+
+
+
+Public abstract class TransportService {
+
+    Abstract void schedule();
+
+    Abstract void assignDriver();
+
+}
+
+
+
+Or
+
+
+
+Public interface TransportOperations {
+
+    Void schedule();
+
+    Void assignDriver();
+
+}
+
+
+
+Role: Defines a general contract for transport services, hiding the logic of each specific vehicle or schedule type.
+
+
+
+(ii)	Encapsulation – Use of Private Fields with Getters/Setters
+
+
+
+Public class Driver {
+
+    Private String licenseNumber;
+
+    Private String name;
+
+
+
+    Public String getLicenseNumber() {
+
+        Return licenseNumber;
+
+    }
+
+
+
+    Public void setLicenseNumber(String licenseNumber) {
+
+        This.licenseNumber = licenseNumber;
+
+    }
+
+}
+
+
+
+Role: Protects sensitive information like credentials and vehicle/driver info.
+
+
+
+(iii)	Inheritance – Base User Class and Subclasses
+
+
+
+Public class User {
+
+    Protected String name;
+
+    Protected String id;
+
+
+
+    Public void requestTransport() {
+
+        System.out.println(“Requesting transport...”);
+
+    }
+
+}
+
+
+
+Public class Student extends User {
+
+    // Extra attributes/methods specific to students
+
+}
+
+
+
+Public class Lecturer extends User {
+
+    // Extra attributes/methods specific to lecturers
+
+}
+
+
+
+Public class TransportOfficer extends User {
+
+    // Admin functionalities
+
+}
+
+
+
+Role: Promotes code reuse and logical structure.
+
+
+
+(iv)	Polymorphism – Method Overriding
+
+
+
+@Override
+
+Public void requestTransport() {
+
+    System.out.println(“Student requesting transport for a class.”);
+
+}
+
+
+
+Role: Enables different user types to request transport differently at runtime.
+
+
+
+(v)	Interfaces for Behavior
+
+
+
+Public interface Schedulable {
+
+    Void schedule();
+
+}
+
+
+
+Public class Bus implements Schedulable {
+
+    Public void schedule() {
+
+        System.out.println(“Bus scheduled.”);
+
+    }
+
+}
+
+
+
+Role: Represents common behaviors that can be shared across multiple classes.
+
+
+
+(vi)	Override requestTransport() in Subclasses
+
+
+
+Public class Lecturer extends User {
+
+    @Override
+
+    Public void requestTransport() {
+
+        System.out.println(“Lecturer requesting transport for a seminar.”);
+
+    }
+
+}
+
+
+
+Role: Demonstrates different request behavior.
+
+
+
+(vii)	Method Overloading – assignDriver()
+
+
+
+Public class TransportManager {
+
+    Public void assignDriver(String vehicleType) {
+
+        System.out.println(“Assigning driver for “ + vehicleType);
+
+    }
+
+
+
+    Public void assignDriver(String vehicleType, String shiftTime) {
+
+        System.out.println(“Assigning driver for “ + vehicleType + “ during “ + shiftTime);
+
+    }
+
+}
+
+
+
+Role: Different forms of assigning drivers depending on input parameters.
+
+
+
+Submission Includes:
+
+
+
+ Java source files (.java)
+
+
+
+ Screenshots of overridden & overloaded methods
+
+
+
+1–2 page documentation explaining choices
+
+
+
+
+
+ QUESTION TWO – GUI + Database Project (25 Marks)
+
+
+
+Goal: Java Desktop App (Swing/JavaFX) for Exhibition Registration using Access DB.
+
+
+
+a)	GUI Design (Java Swing or JavaFX)
+
+
+
+Use JFrame, JPanel, JTextField, JLabel, JButton, etc.
+
+Form should contain:
+
+
+
+Registration ID
+
+
+
+Name
+
+
+
+Faculty
+
+
+
+Project Title
+
+
+
+Phone
+
+
+
+Email
+
+
+
+Image (upload via JFileChooser)
+
+
+
+b)	Access Database Setup
+
+
+
+Table: Participants
+
+
+
+Fields:
+
+
+
+RegID, Name, Faculty, Title, Phone, Email, ImagePath
+
+
+
+
+
+c)	Database Operations Using JDBC + UCanAccess
+
+
+
+Insert:
+
+
+
+String sql = “INSERT INTO Participants VALUES (?, ?, ?, ?, ?, ?, ?)”;
+
+PreparedStatement stmt = conn.prepareStatement(sql);
+
+// Set parameters from form input
+
+
+
+Search:
+
+
+
+String sql = “SELECT * FROM Participants WHERE RegID=?”;
+
+
+
+Update:
+
+
+
+String sql = “UPDATE Participants SET Name=?, ... WHERE RegID=?”;
+
+
+
+Delete:
+
+
+
+String sql = “DELETE FROM Participants WHERE RegID=?”;
+
+
+
+Use:
+
+
+
+Try-catch for exception handling
+
+
+
+PreparedStatement to prevent SQL injection
+
+
+
+d)	Image Upload + Display
+
+
+
+JFileChooser chooser = new JFileChooser();
+
+Int result = chooser.showOpenDialog(null);
+
+If(result == JFileChooser.APPROVE_OPTION) {
+
+    File file = chooser.getSelectedFile();
+
+    String imagePath = file.getAbsolutePath();
+
+    // Save path to DB and display image using JLabel
+
+}
+
+
+
+e)	Input Validation
+
+
+
+Check empty fields: if (nameField.getText().isEmpty())
+
+
+
+Validate email: email.matches(“[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,6}”)
+
+
+
+Use message dialogs to alert the user before submission
+
+
+
+
+
+Submission Includes:
+
+
+
+Java files via GitHub
+
+
+
+Screenshots of GUI
+
+
+
+ Access DB file (.accdb)
+
+
+
+ Brief documentation (validation logic, design decisions)
+
+
+
+
+
+
+
